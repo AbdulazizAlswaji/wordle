@@ -1,5 +1,7 @@
 $(document).ready(() => {
 
+    word = 'hello';
+
     $('input').attr('disabled', true);
     $('input').eq(0).attr('disabled', false);
 
@@ -12,6 +14,7 @@ $(document).ready(() => {
         if (value != '') {
             if (index != 0 && $('input').eq(prev).val() == '') {
                 $(this).val('');
+                alert('4')
             } else {
                 $('input').attr('disabled', true);
                 $(this).attr('disabled', false);
@@ -19,19 +22,19 @@ $(document).ready(() => {
                 $('input').eq(next).focus();
 
                 if (index != 0 && next % 5 == 0) {
-                    alert('check')
+                    check(word, index);
 
                 }
             }
         } else {
-            if (index != 0) {
+            if (index != 0 && !$('input').eq(prev).hasClass('prevent'))  {
                 $('input').attr('disabled', true);
                 $('input').eq(prev).attr('disabled', false);
                 $('input').eq(prev).focus();
                 $('input').eq(next).val('');
 
                 if (prev - 1 >= 0) {
-                    $('input').eq(prev - 1).attr('disabled', false);
+                        $('input').eq(prev - 1).attr('disabled', false);
                 }
 
             } else {
@@ -46,3 +49,38 @@ $(document).ready(() => {
 
 
 });
+
+check = (word, index) => {
+    word = word.toLowerCase();
+    let start = index - 4;
+    let check = '';
+    let counter = 0;
+
+    for (var i = start; i <= index; i++) {
+        char = word[counter];
+        char_check = $('input').eq(i).val().toLowerCase();
+
+        $('input').eq(i).attr('disabled', 'disabled');
+        $('input').eq(i).addClass('prevent');
+
+        if (char == char_check) {
+            $('input').eq(i).addClass('correct');
+        } else {
+            if (word.includes(char_check)) {
+                $('input').eq(i).addClass('includes');
+            } else {
+                $('input').eq(i).addClass('incorrect');
+            }
+        }
+
+        check = check + char_check;
+        counter++;
+    }
+
+    if (check == word) {
+        $('input').attr('disabled', 'disabled');
+    }
+
+
+
+}

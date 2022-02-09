@@ -22,3 +22,18 @@ input {
     height: 49px;
     text-transform: uppercase;
 }
+
+.correct {
+    background-color: rgb(50, 218, 101);
+    color: #fff;
+}
+
+.includes {
+    background-color: rgb(207, 195, 27);
+    color: #fff;
+}
+
+.incorrect {
+    background-color: rgb(80, 90, 81);
+    color: #fff;
+}
