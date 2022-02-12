@@ -1,4 +1,5 @@
 $(document).ready(() => {
+  //AOS.init();
 
     word = 'hello';
 
@@ -50,7 +51,11 @@ $(document).ready(() => {
 
 });
 
-check = (word, index) => {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function check(word, index)  {
     word = word.toLowerCase();
     let start = index - 4;
     let check = '';
@@ -62,7 +67,7 @@ check = (word, index) => {
 
         $('input').eq(i).attr('disabled', 'disabled');
         $('input').eq(i).addClass('prevent');
-
+        $('input').eq(i).addClass('flip');
         if (char == char_check) {
             $('input').eq(i).addClass('correct');
         } else {
@@ -71,16 +76,22 @@ check = (word, index) => {
             } else {
                 $('input').eq(i).addClass('incorrect');
             }
+            
         }
+
+        await sleep(500);
+        $('input').eq(i).addClass('flip-back');
+        await sleep(500);
 
         check = check + char_check;
         counter++;
+
     }
 
     if (check == word) {
         $('input').attr('disabled', 'disabled');
     }
 
-
+    
 
 }

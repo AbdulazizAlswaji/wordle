@@ -38,3 +38,13 @@ input {
     background-color: #787c7e;
     color: #fff;
 }
+
+.flip {
+    transform: rotateX(-90deg);
+    transition-duration: 1400ms;
+}
+
+.flip-back {
+    transform: rotateX(0deg);
+    transition-duration: 1400ms;
+}
