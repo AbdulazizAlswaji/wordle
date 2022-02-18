@@ -9,6 +9,8 @@ header {
     text-transform: uppercase;
     font-size: 29px;
     font-weight: bold;
+    width: 510px;
+    border-bottom: solid 1px #3a3a3c;
 }
 
 table {
@@ -40,11 +42,17 @@ input {
 }
 
 .flip {
-    transform: rotateX(-90deg);
-    transition-duration: 1400ms;
+    animation: 0.5s linear flipping;
 }
 
-.flip-back {
-    transform: rotateX(0deg);
-    transition-duration: 1400ms;
+@keyframes flipping {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
 }

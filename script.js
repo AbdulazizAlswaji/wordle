@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  //AOS.init();
 
     word = 'hello';
 
@@ -15,7 +14,6 @@ $(document).ready(() => {
         if (value != '') {
             if (index != 0 && $('input').eq(prev).val() == '') {
                 $(this).val('');
-                alert('4')
             } else {
                 $('input').attr('disabled', true);
                 $(this).attr('disabled', false);
@@ -23,19 +21,20 @@ $(document).ready(() => {
                 $('input').eq(next).focus();
 
                 if (index != 0 && next % 5 == 0) {
+                    $('input').eq(next).attr('disabled', true);
                     check(word, index);
 
                 }
             }
         } else {
-            if (index != 0 && !$('input').eq(prev).hasClass('prevent'))  {
+            if (index != 0 && !$('input').eq(prev).hasClass('prevent')) {
                 $('input').attr('disabled', true);
                 $('input').eq(prev).attr('disabled', false);
                 $('input').eq(prev).focus();
                 $('input').eq(next).val('');
 
                 if (prev - 1 >= 0) {
-                        $('input').eq(prev - 1).attr('disabled', false);
+                    $('input').eq(prev - 1).attr('disabled', false);
                 }
 
             } else {
@@ -55,7 +54,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function check(word, index)  {
+async function check(word, index) {
     word = word.toLowerCase();
     let start = index - 4;
     let check = '';
@@ -68,6 +67,8 @@ async function check(word, index)  {
         $('input').eq(i).attr('disabled', 'disabled');
         $('input').eq(i).addClass('prevent');
         $('input').eq(i).addClass('flip');
+        await sleep(500);
+
         if (char == char_check) {
             $('input').eq(i).addClass('correct');
         } else {
@@ -76,22 +77,23 @@ async function check(word, index)  {
             } else {
                 $('input').eq(i).addClass('incorrect');
             }
-            
-        }
 
-        await sleep(500);
-        $('input').eq(i).addClass('flip-back');
-        await sleep(500);
+        }
 
         check = check + char_check;
         counter++;
 
     }
 
+
     if (check == word) {
         $('input').attr('disabled', 'disabled');
+        alert('Correct!');
+
+    } else {
+        $('input').eq(index + 1).attr('disabled', false);
+        $('input').eq(index + 1).focus();
     }
 
-    
 
 }
