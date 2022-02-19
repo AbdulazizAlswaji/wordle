@@ -1,1 +1,2 @@
-"# wordle" 
+# wordle
+Simplest wordle app
