@@ -16,7 +16,7 @@ $(document).ready(() => {
                 $(this).val('');
             } else {
                 $('input').attr('disabled', true);
-                $(this).attr('disabled', false);
+                // $(this).attr('disabled', false);
                 $('input').eq(next).attr('disabled', false);
                 $('input').eq(next).focus();
 
@@ -32,10 +32,6 @@ $(document).ready(() => {
                 $('input').eq(prev).attr('disabled', false);
                 $('input').eq(prev).focus();
                 $('input').eq(next).val('');
-
-                if (prev - 1 >= 0) {
-                    $('input').eq(prev - 1).attr('disabled', false);
-                }
 
             } else {
                 $('input').attr('disabled', true);
